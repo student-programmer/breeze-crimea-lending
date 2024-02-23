@@ -1,5 +1,9 @@
 ---
+
+
+import { MainForm } from '../components/Form/Form';
 import Layout from '../layouts/Layout.astro';
+
 
 ---
 
@@ -10,8 +14,8 @@ import Layout from '../layouts/Layout.astro';
 			<h1 class="name">Установка кондиционеров</h1>
 			<button class="application">Оставить заявку</button>
 			</div>
-			
 		</div>
+		<MainForm client:visible/>
 	</main>
 </Layout>
 
