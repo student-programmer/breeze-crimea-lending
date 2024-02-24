@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Anta&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');    
+
+.form {
+    font-family: "Lato", sans-serif;
+    background-color:#708090;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 20px 20px 20px 20px;
+  width: 100%;
+  text-align: center;
+  color: white;
+
+
+}
+
+.f-cont {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  position: relative;
+}
+
+.name {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border: 1px solid  #DCDCDC;
+  max-width: 250px;
+  padding-left: 4px;
+  border-radius: 30px;
+  height: 40px;
+  font-size: 17px;
+  margin-right: 10px;
+}
+
+.btn {
+  margin-top: 10px;
+  font-size: 25px;
+  
+}
+
+.label{
+    font-size: 25px;
+}
+
+.name:focus {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border: 1px solid #EE82EE ;
+  max-width: 250px;
+  padding-left: 4px;
+}
+
+.parag{
+    font-size: 30px;
+}
+
+.zag{
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.input-mask {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input-mask:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.error{
+    color: white;
+    width: 30%;
+}
+
