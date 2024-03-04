@@ -1,13 +1,14 @@
 ---
-// interface Props {
-// 	title: string;
-// 	body: string;
-// 	href: string;
-// }
 
-// const { href, title, body } = Astro.props;
 ---
 
+    <footer>
+        <div class="contact-info">
+            <p><strong>Телефон:</strong> +79788281091</p>
+            <p><strong>Email:</strong> <a href="mailto:breeze-crimea@gmail.com">breeze-crimea@gmail.com</a></p>
+        </div>
+    </footer>
+</footer>
 
     <style>
         footer {
@@ -17,20 +18,14 @@
             color: white;
             text-align: center; 
             padding-top: 1px;
-            margin-top: -20px;
-			
         }
-
-       
-        
-
         .contact-info {
-            
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 400px;
+            width:400px;
+            height:100px;
+            position: relative;
+            left:50%;
+            top:50%;
+            transform: translate(-50%, -50%);
         }
 
         .contact-info p {
@@ -59,10 +54,3 @@
 		
     </style>
 
-    <footer>
-        <div class="contact-info">
-            <p><strong>Телефон:</strong> +79788281091</p>
-            <p><strong>Email:</strong> <a href="mailto:breeze-crimea@gmail.com">breeze-crimea@gmail.com</a></p>
-        </div>
-    </footer>
-</footer>
