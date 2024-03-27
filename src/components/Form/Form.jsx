@@ -4,36 +4,36 @@ import c from './Form.module.css';
 import { useState } from 'react';
 
 export const MainForm = () => {
-	const [name, setName] = useState('');
-	const [email, setEmail] = useState('');
-	const [phone, setPhone] = useState('');
 	const [error, setError] = useState(false);
 	const {
 		register,
 		formState: { errors },
-		handleSubmit,
 	} = useForm();
 
-	const onSubmit = (data, e) => {
+	const Submit = e => {
 		e.preventDefault();
-		alert(JSON.stringify(data));
+		console.log(e);
+		const formData = new FormData(e.target);
+		const name = formData.get('name');
+		const email = formData.get('email');
+		const phone = formData.get('phone');
+		fetch(' http://localhost:5000/telegram', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ name, email, phone }),
+		})
+			.then(response => response.json())
+			.then(result => alert(result.message));
 	};
 
-	const handleNameChange = (e) => {
-		setName(e.target.value);
-	};
-	const handlePhoneChange = (e) => {
-		setPhone(e.target.value);
-	};
-	const handleEmailChange = (e) => {
-		setEmail(e.target.value);
-	};
-	console.log(name)
-	console.log(email)
+
+	
 
 	return (
 		<div className={c.cont} id='application'>
-			<form onSubmit={handleSubmit(onSubmit)} className={c.form}>
+			<form onSubmit={Submit} className={c.form}>
 				<h1 className={c.zag}> Закажите звонок</h1>
 				<p className={c.parag}>
 					Оставьте контакты, по которым мы можем с вами связаться, наши
@@ -44,11 +44,11 @@ export const MainForm = () => {
 						<input
 							type='text'
 							className={c.name}
-							name='firstName'
+							name='name'
+							id='name'
 							placeholder='	Ваше имя'
-							value={name}
-							onChange={handleNameChange}
-							{...register('firstName', {
+							autoComplete='name'
+							{...register('name', {
 								required: 'Поле обязательно к заполнению',
 								pattern: {
 									value: /^[A-Za-zА-Яа-яЁё\s]+$/,
@@ -62,11 +62,11 @@ export const MainForm = () => {
 							mask='+7 (999) 999-99-99'
 							className={c.name}
 							type='tel'
-							name='phoneNumber'
+							name='phone'
+							id='phone'
 							placeholder='	Номер телефона'
-							value={phone}
-							onChange={handlePhoneChange}
-							{...register('phoneNumber', {
+							autoComplete='phone'
+							{...register('phone', {
 								required: 'Поле обязательно к заполнению',
 								pattern: {
 									value: /^[0-9]+$/,
@@ -85,9 +85,9 @@ export const MainForm = () => {
 							className={c.name}
 							type='text'
 							name='email'
+							id='email'
 							placeholder='	E-mail'
-							value={email}
-							onChange={handleEmailChange}
+							autoComplete='email'
 							{...register('email', {
 								required: 'Поле обязательно к заполнению',
 								pattern: {
@@ -98,9 +98,7 @@ export const MainForm = () => {
 						/>
 					</div>
 				</div>
-				<button onClick={onSubmit} className={c.btn}>
-					Оставить заявку
-				</button>
+				<button className={c.btn}>Оставить заявку</button>
 				<div className={c.error}>
 					{errors?.firstName && <p>{errors?.firstName?.message || 'Error'}</p>}
 					{errors?.phoneNumber && (
@@ -112,3 +110,52 @@ export const MainForm = () => {
 		</div>
 	);
 };
+
+// import { useState } from 'react';
+
+// export default function Form() {
+// 	const [responseMessage, setResponseMessage] = useState('');
+
+// 	async function submit(e) {
+// 		e.preventDefault();
+
+// 		const formData = new FormData(e.target);
+// 		const name = formData.get('name');
+// 		const email = formData.get('email');
+// 		const phone = formData.get('phone');
+// 		console.log(name, email, phone);
+// 		const response = await fetch('/api/feedback', {
+// 			method: 'POST',
+// 			body: formData,
+// 		});
+// 		const data = await response.json();
+// 		if (data.phone) {
+// 			setResponseMessage(data.phone);
+// 		}
+// 	}
+
+// 	return (
+// 		<form onSubmit={submit}>
+// 			<label htmlFor='name'>
+// 				Name
+// 				<input type='text' id='name' name='name' autoComplete='name' required />
+// 			</label>
+// 			<label htmlFor='email'>
+// 				Email
+// 				<input
+// 					type='email'
+// 					id='email'
+// 					name='email'
+// 					autoComplete='email'
+// 					required
+// 				/>
+// 			</label>
+// 			<label htmlFor='message'>
+// 				Message
+// 				<textarea id='phone' name='phone' autoComplete='off' required />
+// 			</label>
+// 			<button>Send</button>
+// 			{responseMessage && <p>{responseMessage}</p>}
+// 		</form>
+// 	);
+// }
