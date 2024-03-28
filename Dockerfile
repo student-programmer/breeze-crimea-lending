@@ -10,8 +10,8 @@ COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/dist /usr/share/nginx/html
 
 # Копирование SSL сертификата и закрытого ключа
-COPY ./nginx/ssl/certificate.pem /etc/nginx/ssl/
-COPY ./nginx/ssl/private.pem /etc/nginx/ssl/
+COPY ./nginx/ssl/certificate.crt /etc/nginx/ssl/
+COPY ./nginx/ssl/private.key /etc/nginx/ssl/
 
 # Указание на использование SSL в конфигурации Nginx
 # RUN sed -i '/listen 80;/a listen 443 ssl;' /etc/nginx/nginx.conf
