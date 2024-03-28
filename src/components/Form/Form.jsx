@@ -17,7 +17,7 @@ export const MainForm = () => {
 		const name = formData.get('name');
 		const email = formData.get('email');
 		const phone = formData.get('phone');
-		fetch('https://breezecrime.com:5000/telegram', {
+		fetch('http://45.91.203.199:5000/telegram', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
