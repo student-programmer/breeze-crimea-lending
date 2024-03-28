@@ -14,8 +14,8 @@ COPY ./nginx/ssl/certificate.crt /etc/nginx/ssl/
 COPY ./nginx/ssl/private.key /etc/nginx/ssl/
 
 # Указание на использование SSL в конфигурации Nginx
-RUN sed -i '/listen 80;/a listen 443 ssl;' /etc/nginx/nginx.conf
-RUN sed -i '/listen 443 ssl;/a ssl_certificate /etc/nginx/ssl/certificate.crt;' /etc/nginx/nginx.conf
-RUN sed -i '/ssl_certificate/a ssl_certificate_key /etc/nginx/ssl/private.key;' /etc/nginx/nginx.conf
+# RUN sed -i '/listen 80;/a listen 443 ssl;' /etc/nginx/nginx.conf
+# RUN sed -i '/listen 443 ssl;/a ssl_certificate /etc/nginx/ssl/certificate.crt;' /etc/nginx/nginx.conf
+# RUN sed -i '/ssl_certificate/a ssl_certificate_key /etc/nginx/ssl/private.key;' /etc/nginx/nginx.conf
 
 EXPOSE 443
