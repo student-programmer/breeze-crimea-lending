@@ -15,14 +15,15 @@ export const MainForm = () => {
 		console.log(e);
 		const formData = new FormData(e.target);
 		const name = formData.get('name');
-		const email = formData.get('email');
+		// const email = formData.get('email');
 		const phone = formData.get('phone');
 		fetch('https://breezecrime.com:5000/telegram', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ name, email, phone }),
+			body: JSON.stringify({ name, phone }),
+			// body: JSON.stringify({ name, email, phone }),
 		})
 			.then(response => response.json())
 			.then(result => alert(result.message));
@@ -77,7 +78,7 @@ export const MainForm = () => {
 							})}
 						/>
 					</div>
-					<div className={c.label}>
+					{/* <div className={c.label}>
 						<input
 							className={c.name}
 							type='text'
@@ -93,7 +94,7 @@ export const MainForm = () => {
 								},
 							})}
 						/>
-					</div>
+					</div> */}
 				</div>
 				<button className={c.btn}>Оставить заявку</button>
 				<div className={c.error}>
