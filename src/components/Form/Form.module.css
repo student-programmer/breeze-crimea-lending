@@ -82,9 +82,8 @@
 	border-color: #007bff;
 }
 
-.error {
-	color: white;
-	width: 30%;
+.errors {
+	color: #f52137;
 }
 
 .inputs {
