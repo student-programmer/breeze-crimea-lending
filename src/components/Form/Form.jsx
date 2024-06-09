@@ -2,9 +2,11 @@ import { useForm } from 'react-hook-form';
 import InputMask from 'react-input-mask';
 import c from './Form.module.css';
 import { useState, useRef } from 'react';
+import Modal from '../Modal/Modal';
 
 export const MainForm = () => {
 	const [error, setError] = useState(false);
+	const [modal, setModal] = useState(false);
 	const {
 		register,
 		reset,
@@ -15,6 +17,15 @@ export const MainForm = () => {
 
 	const ref = useRef();
 
+	const toggleModal = currentStatus => {
+		setModal(!currentStatus);
+	};
+	if (modal) {
+		document.body.classList.add('activeModal');
+	} else {
+		document.body.classList.remove('activeModal');
+	}
+
 	const Submit = data => {
 		const phone = data.phone;
 		const name = data.name;
@@ -24,17 +35,23 @@ export const MainForm = () => {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({ name, phone }),
-			// body: JSON.stringify({ name, email, phone }),
 		})
 			.then(response => response.json())
-			.then(result => alert(result.message));
+			.then(() => {
+				toggleModal(modal);
+				setTimeout(() => toggleModal(!modal), 10000);
+			});
+
 		reset();
 		setValue('phone', '');
 	};
 
 	return (
 		<div className={c.cont} id='application'>
-			<form onSubmit={handleSubmit(Submit)} className={c.form}>
+			<form
+				onSubmit={(handleSubmit(Submit), ym(96899203, 'reachGoal', 'submit'))}
+				className={c.form}
+			>
 				<h1 className={c.zag}> Закажите звонок</h1>
 				<p className={c.parag}>
 					Оставьте контакты, по которым мы можем с вами связаться, наши
@@ -59,7 +76,7 @@ export const MainForm = () => {
 						/>
 					</div>
 					{errors?.name && (
-						<p className={c.errors}>{errors?.name?.message || 'Error'}</p>
+						<p className={c.name_errors}>{errors?.name?.message || 'Error'}</p>
 					)}
 					<div className={c.label}>
 						<InputMask
@@ -83,11 +100,14 @@ export const MainForm = () => {
 						/>
 					</div>
 					{errors?.phone && (
-						<p className={c.errors}>{errors?.phone?.message || 'Error'}</p>
+						<p className={c.phone_errors}>
+							{errors?.phone?.message || 'Error'}
+						</p>
 					)}
 				</div>
 
 				<button className={c.btn}>Оставить заявку</button>
+				{modal && <Modal toggleModal={toggleModal} />}
 			</form>
 		</div>
 	);

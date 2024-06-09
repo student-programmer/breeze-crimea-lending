@@ -14,7 +14,7 @@ import Layout from '../layouts/Layout.astro';
 			<a href="#application" class="application">Оставить заявку</a>
 			</div>
 		</div>
-		<MainForm client:load/>
+		<MainForm client:only="react"/>
 		<!-- <Form client:load /> -->
 	</main>
 </Layout>
