@@ -40,6 +40,7 @@ export const MainForm = () => {
 			.then(() => {
 				toggleModal(modal);
 				setTimeout(() => toggleModal(!modal), 10000);
+				ym(96899203, 'reachGoal', 'submit')
 			});
 
 		reset();
@@ -49,7 +50,7 @@ export const MainForm = () => {
 	return (
 		<div className={c.cont} id='application'>
 			<form
-				onSubmit={(handleSubmit(Submit), ym(96899203, 'reachGoal', 'submit'))}
+				onSubmit={handleSubmit(Submit)}
 				className={c.form}
 			>
 				<h1 className={c.zag}> Закажите звонок</h1>
